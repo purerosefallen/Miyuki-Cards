@@ -34,7 +34,7 @@ function cm.initial_effect(c)
 	c:RegisterEffect(e1)
 end
 function cm.tfilter(c,mc,e,tp)
-	return c:IsType(TYPE_FUSION) and miyuki.isdoll(c) and c:IsAttribute(mc:GetAttribute()) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and mc:IsCanBeFusionMaterial(c)
+	return c:IsType(TYPE_FUSION) and miyuki.isdoll(c) and c:IsAttribute(mc:GetAttribute()) and c:IsCanBeSpecialSummoned(e,SUMMON_TYPE_FUSION,tp,false,false) and mc:IsCanBeFusionMaterial(c) and c:GetLevel()==9
 end
 function cm.filter(c,e,tp)
 	local ce={Duel.IsPlayerAffectedByEffect(tp,EFFECT_MUST_BE_FMATERIAL)}
