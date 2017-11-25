@@ -27,3 +27,7 @@ build_script:
   - cd ..
 
 test: off
+
+branches:
+  only:
+    - master
