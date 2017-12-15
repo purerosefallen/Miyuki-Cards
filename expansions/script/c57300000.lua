@@ -578,3 +578,23 @@ function cm.SanaeCost(e,tp,eg,ep,ev,re,r,rp,chk)
 	local g=Duel.SelectMatchingCard(tp,cm.SanaeCostFilter,tp,LOCATION_MZONE,0,1,1,nil)
 	Duel.Remove(g,POS_FACEUP,REASON_COST)
 end
+function cm.AddSummonMusic(c,desc,stype)
+	if c:IsStatus(STATUS_COPYING_EFFECT) or Senya.master_rule_3_flag then return end
+	local e1=Effect.CreateEffect(c)
+	e1:SetType(EFFECT_TYPE_SINGLE+EFFECT_TYPE_CONTINUOUS)
+	e1:SetCode(EVENT_SUMMON_SUCCESS)
+	e1:SetProperty(EFFECT_FLAG_UNCOPYABLE+EFFECT_FLAG_CANNOT_DISABLE)
+	if stype then
+		e1:SetCondition(cm.SummonTypeCondition(stype))
+	end
+	e1:SetOperation(function()
+		Duel.Hint(11,0,desc)
+	end)
+	c:RegisterEffect(e1)
+	local e2=e1:Clone()
+	e2:SetCode(EVENT_FLIP_SUMMON_SUCCESS)
+	c:RegisterEffect(e2)
+	local e3=e1:Clone()
+	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
+	c:RegisterEffect(e3)
+end

@@ -2,6 +2,7 @@
 local m=57300027
 local cm=_G["c"..m]
 function cm.initial_effect(c)
+	miyuki.AddSummonMusic(c,m*16+1,SUMMON_TYPE_LINK)
 	aux.AddLinkProcedure(c,aux.FilterBoolFunction(Card.IsLinkSetCard,0x570),2,2)
 	c:EnableReviveLimit()
 	local e2=Effect.CreateEffect(c)
