@@ -14,7 +14,7 @@ build_script:
   - cp -rf ../expansions/script expansions
 
   - git add . -A
-  - git commit -m "Auto Push by Nanahira"
+  - git commit -m "Auto Push by Miyuki"
 
   - git checkout data
   - cp -rf ../expansions/pics expansions
