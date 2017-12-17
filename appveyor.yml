@@ -20,9 +20,6 @@ build_script:
   - cp -rf ../expansions/pics expansions
   - cp -rf ../expansions/script expansions
   - cp -rf ../sound .
-  - cd update
-  - update.exe -ci
-  - cd ..
 
   - git add . -A
   - git commit -m "Auto Push by Miyuki"
