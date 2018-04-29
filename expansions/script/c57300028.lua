@@ -58,7 +58,7 @@ function cm.spop(e,tp,eg,ep,ev,re,r,rp)
 	end
 end
 function cm.counterfilter(c)
-	return c:IsSetCard(0x570) or c:GetSummonLocation()~=LOCATION_EXTRA
+	return c:IsSetCard(0x570)
 end
 function cm.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	if chk==0 then return Duel.GetCustomActivityCount(m,tp,ACTIVITY_SPSUMMON)==0 end
@@ -72,7 +72,7 @@ function cm.cost(e,tp,eg,ep,ev,re,r,rp,chk)
 	Duel.RegisterEffect(e1,tp)
 end
 function cm.splimit(e,c,sump,sumtype,sumpos,targetp,se)
-	return not c:IsSetCard(0x570) and c:IsLocation(LOCATION_EXTRA)
+	return not c:IsSetCard(0x570)
 end
 function cm.rcon(e,tp,eg,ep,ev,re,r,rp)
 	return (r & REASON_COST)~=0 and re:IsHasType(0x7e0) and re:IsActiveType(TYPE_XYZ) and re:GetHandler():IsSetCard(0x570) and e:GetHandler():GetLinkedGroup():IsContains(re:GetHandler())
