@@ -31,7 +31,7 @@ before_install:
 - mkdir replay
 
 script:
-- echo "select id from datas;" | sqlite3 ./expansions/mcg.cdb | xargs -I {} ./ygopro {} 2>&1 | tee ../redtext.txt
+- echo "select id from datas;" | sqlite3 $DATABASE_FILE | xargs -I {} ./ygopro {} 2>&1 | tee ../redtext.txt
 - cd ..
 
 - bash -c "exit $(cat ./redtext.txt | wc -l)"
