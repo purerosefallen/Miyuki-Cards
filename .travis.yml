@@ -9,7 +9,8 @@ addons:
     packages:
     - libevent-dev
     - libsqlite3-dev
-    - sqlite3
+env:
+- DATABASE_FILE=expansions/mcg.cdb
 
 before_install:
 - git clone --depth=1 --branch=server --recursive https://github.com/purerosefallen/ygopro
