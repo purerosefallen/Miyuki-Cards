@@ -34,7 +34,3 @@ script:
 - cd ..
 
 - exit $(cat ./redtext.txt | wc -l)
-
-branches:
-  only:
-  - master
