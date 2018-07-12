@@ -554,5 +554,34 @@ end
 function cm.WindbotTwinsCommonEffect(c,id)
 	c:EnableReviveLimit()
 	aux.AddLinkProcedure(c,cm.IsLinkWindbot,2,2)
-	
+	local function twin_spfilter(c,e,tp)
+		return c:IsCode(57330015-id)
+	end
+	local e1=Effect.CreateEffect(c)
+	e1:SetCategory(CATEGORY_SPECIAL_SUMMON)
+	e1:SetType(EFFECT_TYPE_IGNITION)
+	e1:SetRange(LOCATION_MZONE)
+	e1:SetCountLimit(1,57330014+id)
+	e1:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk,chkc)
+		if chkc then return chkc:IsLocation(LOCATION_GRAVE+LOCATION_REMOVED) and chkc:IsControler(tp) and twin_spfilter(chkc,e,tp) end
+		if chk==0 then return Duel.GetMZoneCount(tp)>0
+			and Duel.IsExistingTarget(twin_spfilter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,nil,e,tp) end
+		Duel.Hint(HINT_SELECTMSG,tp,HINTMSG_SPSUMMON)
+		local g=Duel.SelectTarget(tp,twin_spfilter,tp,LOCATION_GRAVE+LOCATION_REMOVED,0,1,1,nil,e,tp)
+		Duel.SetOperationInfo(0,CATEGORY_SPECIAL_SUMMON,g,1,0,0)
+	end)
+	e1:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
+		local tc=Duel.GetFirstTarget()
+		if tc:IsRelateToEffect(e)
+				and Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+			local ex=Effect.CreateEffect(e:GetHandler())
+			ex:SetType(EFFECT_TYPE_SINGLE)
+			ex:SetCode(EFFECT_CANNOT_REMOVE)
+			ex:SetValue(1)
+			ex:SetReset(0x1fe1000+RESET_PHASE+PHASE_END)
+			tc:RegisterEffect(e1,true)
+			Duel.SpecialSummonComplete()
+		end
+	end)
+	tc:RegisterEffect(e1)
 end
