@@ -574,7 +574,7 @@ function cm.WindbotTwinsCommonEffect(c,id)
 	e1:SetOperation(function(e,tp,eg,ep,ev,re,r,rp)
 		local tc=Duel.GetFirstTarget()
 		if tc:IsRelateToEffect(e)
-				and Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP)
+				and Duel.SpecialSummonStep(tc,0,tp,tp,false,false,POS_FACEUP) then
 			local ex=Effect.CreateEffect(e:GetHandler())
 			ex:SetType(EFFECT_TYPE_SINGLE)
 			ex:SetCode(EFFECT_CANNOT_REMOVE)
