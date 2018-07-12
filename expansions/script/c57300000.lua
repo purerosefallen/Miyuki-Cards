@@ -424,6 +424,23 @@ function cm.IsWindbot(c)
 	end
 	return false
 end
+function cm.IsLinkWindbot(c)
+	local codet={c:GetLinkCode()}
+	for i,code in pairs(codet) do
+		local mt=_G["c"..code]
+		if not mt then
+			_G["c"..code]={}
+			if pcall(function() dofile("expansions/script/c"..code..".lua") end) or pcall(function() dofile("script/c"..code..".lua") end) then
+				mt=_G["c"..code]
+				_G["c"..code]=nil
+			else
+				_G["c"..code]=nil
+			end
+		end
+		if mt and mt.named_with_windbot then return true end
+	end
+	return false
+end
 function cm.IsFusionWindbot(c)
 	local codet={c:GetFusionCode()}
 	for i,code in pairs(codet) do
@@ -533,4 +550,9 @@ function cm.AddSummonMusic(c,desc,stype)
 	local e3=e1:Clone()
 	e3:SetCode(EVENT_SPSUMMON_SUCCESS)
 	c:RegisterEffect(e3)
+end
+function cm.WindbotTwinsCommonEffect(c,id)
+	c:EnableReviveLimit()
+	aux.AddLinkProcedure(c,cm.IsLinkWindbot,2,2)
+	
 end
