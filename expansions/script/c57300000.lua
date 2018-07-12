@@ -599,8 +599,14 @@ function cm.WindbotTwinsCommonEffect(c,id)
 				else return re:IsHasType(EFFECT_TYPE_ACTIVATE) end
 			end)()
 	end)
-	e1:SetCost()
-	e1:SetTarget(cm.negtg)
+	e1:SetCost(aux.bfgcost)
+	e1:SetTarget(function(e,tp,eg,ep,ev,re,r,rp,chk)
+		if chk==0 then return re:GetHandler():IsAbleToRemove() end
+		Duel.SetOperationInfo(0,CATEGORY_NEGATE,eg,1,0,0)
+		if re:GetHandler():IsRelateToEffect(re) then
+			Duel.SetOperationInfo(0,CATEGORY_REMOVE,eg,1,0,0)
+		end
+	end)
 	e1:SetOperation(cm.negop)
 	c:RegisterEffect(e1)
 end
