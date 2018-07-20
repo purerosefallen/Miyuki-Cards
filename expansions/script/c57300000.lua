@@ -580,7 +580,7 @@ function cm.WindbotTwinsCommonEffect(c,id)
 			ex:SetCode(EFFECT_CANNOT_REMOVE)
 			ex:SetValue(1)
 			ex:SetReset(0x1fe1000+RESET_PHASE+PHASE_END)
-			tc:RegisterEffect(e1,true)
+			tc:RegisterEffect(ex,true)
 			Duel.SpecialSummonComplete()
 		end
 	end)
