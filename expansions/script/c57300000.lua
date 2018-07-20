@@ -584,7 +584,7 @@ function cm.WindbotTwinsCommonEffect(c,id)
 			Duel.SpecialSummonComplete()
 		end
 	end)
-	tc:RegisterEffect(e1)
+	c:RegisterEffect(e1)
 	local e1=Effect.CreateEffect(c)
 	e1:SetDescription(57330015*16)
 	e1:SetCategory(CATEGORY_NEGATE+CATEGORY_REMOVE)
