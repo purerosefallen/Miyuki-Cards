@@ -6,13 +6,19 @@ addons:
   ssh_known_hosts:
   - github.com
   apt:
+    sources:
+      - ubuntu-toolchain-r-test
     packages:
-    - libevent-dev
-    - libsqlite3-dev
+      - gcc-6
+      - g++-6
+      - libevent-dev
+      - libsqlite3-dev
 env:
 - DATABASE_FILE=expansions/mcg.cdb
 
 before_install:
+- sudo ln -s /usr/bin/gcc-6 /usr/local/bin/gcc
+- sudo ln -s /usr/bin/g++-6 /usr/local/bin/g++
 - git clone --depth=1 --branch=server --recursive https://github.com/purerosefallen/ygopro
 - cd ygopro
 
